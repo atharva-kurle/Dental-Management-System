@@ -1,5 +1,4 @@
 
-
 <html lang="en">
 <head>
 
@@ -16,7 +15,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap" rel="stylesheet">
-    
     <style>
     header{
     background: url(img/img2.jpg);
@@ -40,56 +38,23 @@
     </style>
 </head>
 <body>
-
-
-@error('phone')
-  <div> {{ $errors->first('phone')}} </div>
-@enderror
-@error('user_name')
-  <div> {{ $errors->first('user_name')}} </div>
-@enderror
-@error('password')
-  <div> {{ $errors->first('password')}} </div>
-@enderror
-
-
     
 <header>
     <nav class="nav-wrapper nav transparent z-depth-1">
             <a href="" class="brand-logo"><img class="logo_img" src="img/logo.png" alt=""></a>
             <ul class="right nav_row">
-                <li><a class="black-text nav_op" href="#logsign">Log In</a></li>
-                <li><a class="black-text nav_op" href="#logsign">Sign Up</a></li>
-                <li><a class="black-text nav_op" href="#con">Contact Us</a></li>
+                <li><a class="black-text nav_op" href="history?user={{ session('data') }}">History</a></li>
+                <li><a class="black-text nav_op" href="logout">Logout</a></li>
+                <li><a class="black-text nav_op" href="">{{ session('data') }}</a></li>
             </ul>
     </nav>
-
     <div class="container">
-    <h1 class="banner cyan-text" id="guest">YOUR OWN <br> ORTHODONTIST</h1>
+    
+    <h1 class="banner cyan-text">YOUR OWN <br> STOMATOLOGIST</h1>
     <p>Lorem ipsum Nobis delectus rem nisi quo praesentium, so<br>luta ipsa porro eaque, dicta harum saepe rerum dolorem volu<br>orem ipsum Nobis delectus rem nisi quo praesentium, so<br>ptates eveniet iure modi, quibusdam maxime cum.</p>
 </div>
 <div class="container">
-        <a href="#modal1" class="btn-large light-blue darken-4 book_btn modal-trigger">BOOK A VISIT!</a>
-        <div id="modal1" class="modal">
-    <div class="modal-content">
-    <form class="app_form" action="/guestBooking" method="POST">
-                  <h4 class="center">Appointment Form</h4>
-                  {{csrf_field() }}
-                    <input type="text" required name="user_name" value="Guest User" disabled>
-                    <label for="user_name">Username (Sign up to avail discounted appointments)</label>
-                    <input required type="text" name="name">
-                    <label for="name">Enter your Name</label>
-                    <input required type="text" class="datepicker" name="date">
-                    <label for="date">Enter Date</label>
-                    <input required type="text" name="time" placeholder="Between 10AM-1PM & 5PM-9PM">
-                    <label for="time">Enter Time</label><br>
-                    <input required type="text" name="phone">
-                    <label for="time">Enter your registered 10 digit phone number</label><br>
-                    <button class="btn app_btn" type="submit" style="margin-left: 46%;margin-top: 10px;">Book</button>
-                </form>
-    </div>
-    
-  </div>
+        <a href="#logsign" class="btn-large light-blue darken-4 book_btn">BOOK A VISIT!</a>
 </div>
 
 </header>
@@ -106,7 +71,7 @@
           I am convenient because I require little markup to use effectively.</p>
         </div>
         <div class="card-action">
-          <a href="#guest"><button class="btn light-blue darken-4 card-btn modal-trigger">BOOK</button></a>
+          <a href="#logsign"><button class="btn light-blue darken-4 card-btn">BOOK</button></a>
         </div>
       </div>
     </div>
@@ -124,7 +89,7 @@
           I am convenient because I require little markup to use effectively.</p>
         </div>
         <div class="card-action">
-        <a href="#guest"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
+        <a href="#logsign"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
         </div>
       </div>
     </div>
@@ -141,7 +106,7 @@
           I am convenient because I require little markup to use effectively.</p>
         </div>
         <div class="card-action">
-        <a href="#guest"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
+        <a href="#logsign"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
         </div>
       </div>
     </div>
@@ -158,7 +123,7 @@
           I am convenient because I require little markup to use effectively.</p>
         </div>
         <div class="card-action">
-        <a href="#guest"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
+        <a href="#logsign"><button class="btn card-btn light-blue darken-4">BOOK</button></a>
         </div>
       </div>
     </div>
@@ -170,34 +135,22 @@
       <div class="row" id="logsign">
           <div class="col reg_col l4">
               <ul class="tabs">
-                  <li class="tab col l6"><a class="black-text" href="#login">LOGIN</a></li>
-                  <li class="tab col l6"><a class="black-text" href="#signup">SIGN-IN</a></li>
+                  <li class="tab col l12"><a style="
+    font-family: 'Work Sans', sans-serif; font-size: 25px;" class="black-text" href="">APPOINTMENT</a></li>
               </ul>
               <div class="col l12 register" id="login">
-                    <h5 class="center" style="font-family: 'Work Sans', sans-serif; margin-top:20px;">Log into existing account</h5>
-                    
-                <form class="login_form" action="/" method="POST">
+                    <h5 class="center" style="font-family: 'Work Sans', sans-serif; margin-top:15px;">Book your appointment!</h5>
+                <form class="app_form" action="/profile" method="POST">
                   {{csrf_field() }}
-                    <input required type="text" name="user_name">
-                    <label for="user_name">Enter your Username</label> 
-                    <input  required type="password" name="password">
-                    <label for="password">Enter your Password</label><br>
-                    <button class="btn form_btn1" type="submit">Login</button>
-                    <button class="btn form_btn2" type="button">Forgot password</button>
-                </form>
-
-              </div>
-              <div class="col l12 register" id="signup">
-              <h5 class="center" style="font-family: 'Work Sans', sans-serif; margin-top:20px;">Create a new account</h5>
-                <form action="/sign" method="POST">
-                    {{csrf_field() }}
-                    <input type="text" id="user" name="user_name">
-                    <label for="user">Enter a Username</label>
-                    <input type="password"  id="pass" name="password">
-                    <label for="pass">Enter a Password</label><br>
-                    <input type="text" id="ph" name="phone">
-                    <label for="ph">Enter your Phone number</label><br>
-                    <button class="btn form_btn3" type="submit">Register</button>
+                    <input required type="text" name="name">
+                    <label for="user_name">Enter your Name</label>
+                    <input required type="text" class="datepicker" name="date">
+                    <label for="date">Enter Date</label>
+                    <input required type="text" name="time" placeholder="Between 10AM-1PM & 5PM-9PM">
+                    <label for="time">Enter Time</label><br>
+                    <input required type="text" name="phone">
+                    <label for="time">Enter your registered 10 digit phone number</label><br>
+                    <button class="btn app_btn" type="submit">Book</button>
                 </form>
               </div>
           </div>
@@ -263,7 +216,6 @@
     $(document).ready(function(){
 
       $('.tabs').tabs();
-    $('.modal').modal();
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -271,9 +223,7 @@
      M.Datepicker.init(elems,{format:'yyyy-mm-dd'});
   });
 
-
   </script>
-
 
 </body>
 </html>
